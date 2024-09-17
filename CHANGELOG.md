@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/avix133/cicd/compare/v1.0.0...v1.1.0) (2024-09-17)
+
+
+### Features
+
+* do not run check-pr-title on release please branch ([049bb44](https://github.com/avix133/cicd/commit/049bb44dff2699e1bb65f734bc54bc6c60db3258))
+
+
+### Bug Fixes
+
+* input references in deploy ([fb7ad60](https://github.com/avix133/cicd/commit/fb7ad60187acd008bb8779817f71d436017e34ba))
+
 ## 1.0.0 (2024-09-17)
 
 

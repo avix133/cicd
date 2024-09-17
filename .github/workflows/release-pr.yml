@@ -2,7 +2,7 @@ name: Scan
 
 on:
   push:
-    branches: [release-please--*]
+    branches: ['release-please--*']
   
 permissions:
   id-token: write

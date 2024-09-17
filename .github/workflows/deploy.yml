@@ -21,9 +21,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
+      - name: Promote image
+        run: |
+          echo "Promoting image with tag ${{ inputs.version }} to ${{ inputs.environment }}"
+          # Add your deployment steps here
       - name: Deploy
         run: |
           echo "Deploying to ${{ inputs.environment }}"

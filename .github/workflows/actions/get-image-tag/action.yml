@@ -1,0 +1,16 @@
+name: "Get image tag"
+
+outputs:
+  image_tag: 
+    description: "Image tag"
+    value: ${{ steps.get-version.outputs.version }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Get version
+      id: get-version
+      shell: bash
+      run: |
+        VERSION="$(git describe --tags --always)"
+        echo "version=$VERSION" >> $GITHUB_OUTPUT

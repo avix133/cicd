@@ -22,7 +22,7 @@ jobs:
         id: release
         with:
           release-type: simple
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT }}
 
   deploy:
     uses: ./.github/workflows/deploy.yml

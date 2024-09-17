@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.0](https://github.com/avix133/cicd/compare/v1.1.0...v1.2.0) (2024-09-17)
+
+
+### Features
+
+* lint pr for all branches except one ([7f8043a](https://github.com/avix133/cicd/commit/7f8043a6983b92a3fcd29acd75035ab228d34b29))
+* test flow ([741b42b](https://github.com/avix133/cicd/commit/741b42bba71f2fe1cdf46d0c9dc1bd85a0c22318))
+
+
+### Bug Fixes
+
+* directory structure ([cfe82c1](https://github.com/avix133/cicd/commit/cfe82c14e6dd2c2c8d3fef4c2f488d67d4bf0dc0))
+
 ## [1.1.0](https://github.com/avix133/cicd/compare/v1.0.0...v1.1.0) (2024-09-17)
 
 

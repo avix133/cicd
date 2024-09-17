@@ -1,0 +1,60 @@
+name: Merge PR
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      image_tag: ${{ steps.get-image-tag.outputs.image_tag }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get image tag
+        id: get-image-tag
+        uses: ./.github/actions/get-image-tag
+
+      - name: Build and push docker image
+        run: |
+          echo "Building docker image with tag ${{ steps.get-image-tag.outputs.image_tag }}"
+
+  release-please:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: build
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - name: Release call
+        uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          release-type: simple
+          token: ${{ secrets.PAT }}
+
+  deploy-dev:
+    uses: ./.github/workflows/deploy.yml
+    needs: [build, release-please]
+    if: ${{ !needs.release-please.outputs.release_created }}
+    with:
+      environment: dev
+      version: ${{ needs.build.outputs.image_tag }}
+    
+  deploy-prod:
+    uses: ./.github/workflows/deploy.yml
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created }}
+    with:
+      environment: prod
+      version: ${{ needs.release-please.outputs.tag_name }}

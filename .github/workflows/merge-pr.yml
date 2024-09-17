@@ -9,6 +9,9 @@ permissions:
   pull-requests: write
   id-token: write
 
+env:
+  PRE_RELEASE_TAG: "pre-release"
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -35,6 +38,7 @@ jobs:
     outputs:
       release_created: ${{ steps.release.outputs.release_created }}
       tag_name: ${{ steps.release.outputs.tag_name }}
+      pr: ${{ steps.release.outputs.pr }}
     steps:
       - name: Release call
         uses: googleapis/release-please-action@v4
@@ -50,7 +54,8 @@ jobs:
     steps:
       - name:
         run: |
-          echo "Promoting image with tag ${{ needs.build.outputs.image_tag }} -> ${{ needs.release-please.outputs.tag_name }}"
+          echo "Adding image tag for ${{ needs.build.outputs.image_tag }} -> ${{ env.PRE_RELEASE_TAG }}"
+          echo "Pr: ${{ needs.release-please.outputs.pr }}"
 
   deploy-dev:
     uses: ./.github/workflows/deploy.yml

@@ -1,0 +1,31 @@
+name: "Deploy"
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: "Deployment environment"
+        type: string
+        required: true
+      version:
+        description: "Version"
+        type: string
+        required: true
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy
+        run: |
+          echo "Deploying to ${{ github.event.inputs.environment }}"
+          echo "Version: ${{ github.event.inputs.version }}"
+          # Add your deployment steps here

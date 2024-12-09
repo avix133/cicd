@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/avix133/cicd/compare/v1.2.0...v1.3.0) (2024-09-17)
+
+
+### Features
+
+* test image tag ([1647581](https://github.com/avix133/cicd/commit/1647581e8121551d7822cec0fe8833f0c0f642c6))
+
 ## [1.2.0](https://github.com/avix133/cicd/compare/v1.1.0...v1.2.0) (2024-09-17)
 
 
